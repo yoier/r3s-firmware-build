@@ -147,7 +147,7 @@ loge "sha256 verification successful" green
 
 mv *.gz FriendlyWrt.img.gz
 gzip -dv *.gz
-block_device='mmcblk0'
+block_device=`lsblk -no PKNAME /dev/$(lsblk -o NAME,MOUNTPOINT | awk '$2 == "/" {print $1}' | sed 's/^[│└─ ]*//')`
 bs=`expr $(cat /sys/block/$block_device/size) \* 512`
 truncate -s $bs FriendlyWrt.img || ../truncate -s $bs FriendlyWrt.img
 echo ", +" | sfdisk -N 2 FriendlyWrt.img
