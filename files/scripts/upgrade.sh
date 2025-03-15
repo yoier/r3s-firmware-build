@@ -1,6 +1,7 @@
 #!/bin/bash
 #bash upgrade.sh (online/offline|must) (needback/noback|must)
 #R2S upgrade scr
+#curl -L -o /scripts/firstboot.sh https://raw.githubusercontent.com/yoier/r3s-firmware-build/main/files/scripts/firstboot.sh
 #curl -L -o /scripts/upgrade.sh https://raw.githubusercontent.com/yoier/r3s-firmware-build/main/files/scripts/upgrade.sh
 #curl -L -o /scripts/otherbackfs.txt https://raw.githubusercontent.com/yoier/r3s-firmware-build/main/files/scripts/otherbackfs.txt
 #20 5 * * 1 /scripts/upgrade.sh online needback
@@ -88,11 +89,12 @@ function isbackup () {
 	loge "Backing up" blue
 	wait_seds 10
 	cd /mnt/img
+	rm etc/uci-defaults/* #Delete the script for the first installation startup (it should not be run when subsequent updates are started, but only run the script generated after the backup)
 	sysupgrade -b back.tar.gz
 	tar -zxf back.tar.gz
 	wait_seds 5
 	cat > localexr.tmp << EOF
-bash /scripts/first-boot.sh
+bash /scripts/firstboot.sh
 sed -i '1,3d' /etc/rc.local
 EOF
 	wait_seds 1
@@ -133,11 +135,11 @@ loge "Wait 10 seconds before continuing" red
 wait_seds 10
 
 #bg
-if ! command -v resize2fs &> /dev/null; then loge "CMD_not_found! installing pkg" red
-	apk update || true
-	apk add fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd
-	if ! command -v resize2fs &> /dev/null; then loge "Installation failed,please check your network!" red && exit 1; else loge "Successful installation" green; fi
-fi
+# if ! command -v resize2fs &> /dev/null; then loge "CMD_not_found! installing pkg" red
+# 	apk update || true
+# 	apk add fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd
+# 	if ! command -v resize2fs &> /dev/null; then loge "Installation failed,please check your network!" red && exit 1; else loge "Successful installation" green; fi
+# fi
 
 if [[ $1 == "online" ]]; then online; else offline; fi
 

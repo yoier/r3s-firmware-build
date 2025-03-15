@@ -1,1 +1,3 @@
 /usr/share/v2ray
+/scripts/firstboot.sh
+/scripts/otherbackfs.txt
