@@ -12,7 +12,7 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
 <br>&ensp;passwall(nft xray hysteria) tailscale ttyd samba4
-<br>&ensp;block-mount kmod-fs-ext4 usb2 usb3 bash python3(pip) vim-full sha256sum md5sum
+<br>&ensp;block-mount kmod-fs-ext4 usb2 usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox
 <br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd
 
 ## 插件配置教程
@@ -21,7 +21,7 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 ## 记录
 - 2025.03.15 测试脚本。
 - 2025.03.16 固件测试完成，修改一些错误。固件测试通过，发布每周版。稳定版固件测试中。
-
+- 2025.03.16 修改系统默认配置，语言、时区、NTP服务器等。定制版BusyBox,删除重复命令，新增常用命令。
 
 ## Credits
 

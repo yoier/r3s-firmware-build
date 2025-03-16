@@ -1,0 +1,31 @@
+
+config system
+	option hostname 'Openwrt'
+	option timezone 'CST-8'
+	option zonename 'Asia/Shanghai'
+	option ttylogin '0'
+	option log_size '128'
+	option urandom_seed '0'
+	option log_proto 'udp'
+	option conloglevel '7'
+	option cronloglevel '7'
+
+config timeserver 'ntp'
+	list server 'ntp.aliyun.com'
+	list server 'time1.cloud.tencent.com'
+	list server 'ntp.tuna.tsinghua.edu.cn'
+
+config led 'led_wan'
+	option name 'WAN'
+	option sysfs 'green:wan'
+	option trigger 'netdev'
+	option mode 'link tx rx'
+	option dev 'eth0'
+
+config led 'led_lan'
+	option name 'LAN'
+	option sysfs 'green:lan'
+	option trigger 'netdev'
+	option mode 'link tx rx'
+	option dev 'eth1'
+
