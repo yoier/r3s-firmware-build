@@ -3298,7 +3298,7 @@ CONFIG_PACKAGE_kmod-lib-crc32c=y
 # CONFIG_PACKAGE_kmod-lib-lz4hc is not set
 # CONFIG_PACKAGE_kmod-lib-objagg is not set
 # CONFIG_PACKAGE_kmod-lib-parman is not set
-CONFIG_PACKAGE_kmod-lib-textsearch=y
+# CONFIG_PACKAGE_kmod-lib-textsearch is not set
 # CONFIG_PACKAGE_kmod-lib-zstd is not set
 # CONFIG_PACKAGE_kmod-oid-registry is not set
 # end of Libraries
@@ -3353,8 +3353,8 @@ CONFIG_PACKAGE_kmod-nls-base=y
 # CONFIG_PACKAGE_kmod-ipt-cluster is not set
 # CONFIG_PACKAGE_kmod-ipt-compat-xtables is not set
 # CONFIG_PACKAGE_kmod-ipt-condition is not set
-CONFIG_PACKAGE_kmod-ipt-conntrack=y
-CONFIG_PACKAGE_kmod-ipt-conntrack-extra=y
+# CONFIG_PACKAGE_kmod-ipt-conntrack is not set
+# CONFIG_PACKAGE_kmod-ipt-conntrack-extra is not set
 # CONFIG_PACKAGE_kmod-ipt-conntrack-label is not set
 # CONFIG_PACKAGE_kmod-ipt-coova is not set
 CONFIG_PACKAGE_kmod-ipt-core=y
@@ -3402,7 +3402,6 @@ CONFIG_PACKAGE_kmod-ipt-ipset=y
 # CONFIG_PACKAGE_kmod-ipt-tproxy is not set
 # CONFIG_PACKAGE_kmod-ipt-u32 is not set
 # CONFIG_PACKAGE_kmod-netatop is not set
-CONFIG_PACKAGE_kmod-nf-conncount=y
 CONFIG_PACKAGE_kmod-nf-conntrack=y
 CONFIG_PACKAGE_kmod-nf-conntrack-netlink=y
 CONFIG_PACKAGE_kmod-nf-conntrack6=y
@@ -3481,7 +3480,7 @@ CONFIG_PACKAGE_kmod-nft-tproxy=y
 # CONFIG_PACKAGE_kmod-hfcpci is not set
 # CONFIG_PACKAGE_kmod-i40e is not set
 # CONFIG_PACKAGE_kmod-iavf is not set
-CONFIG_PACKAGE_kmod-ifb=y
+# CONFIG_PACKAGE_kmod-ifb is not set
 # CONFIG_PACKAGE_kmod-igb is not set
 # CONFIG_PACKAGE_kmod-igc is not set
 # CONFIG_PACKAGE_kmod-ipvlan is not set
@@ -3593,7 +3592,7 @@ CONFIG_PACKAGE_kmod-r8169=y
 # CONFIG_PACKAGE_kmod-mpls is not set
 # CONFIG_PACKAGE_kmod-nat46 is not set
 # CONFIG_PACKAGE_kmod-netconsole is not set
-CONFIG_PACKAGE_kmod-netem=y
+# CONFIG_PACKAGE_kmod-netem is not set
 # CONFIG_PACKAGE_kmod-netlink-diag is not set
 # CONFIG_PACKAGE_kmod-nlmon is not set
 # CONFIG_PACKAGE_kmod-nsh is not set
@@ -3614,16 +3613,16 @@ CONFIG_PACKAGE_kmod-pppox=y
 # CONFIG_PACKAGE_kmod-pptp is not set
 # CONFIG_PACKAGE_kmod-qrtr-mhi is not set
 # CONFIG_PACKAGE_kmod-qrtr-tun is not set
-CONFIG_PACKAGE_kmod-sched=y
+# CONFIG_PACKAGE_kmod-sched is not set
 # CONFIG_PACKAGE_kmod-sched-act-ipt is not set
 # CONFIG_PACKAGE_kmod-sched-act-police is not set
 # CONFIG_PACKAGE_kmod-sched-act-sample is not set
 # CONFIG_PACKAGE_kmod-sched-act-vlan is not set
 # CONFIG_PACKAGE_kmod-sched-bpf is not set
-CONFIG_PACKAGE_kmod-sched-cake=y
+# CONFIG_PACKAGE_kmod-sched-cake is not set
 # CONFIG_PACKAGE_kmod-sched-connmark is not set
-CONFIG_PACKAGE_kmod-sched-core=y
-CONFIG_PACKAGE_kmod-sched-ctinfo=y
+# CONFIG_PACKAGE_kmod-sched-core is not set
+# CONFIG_PACKAGE_kmod-sched-ctinfo is not set
 # CONFIG_PACKAGE_kmod-sched-drr is not set
 # CONFIG_PACKAGE_kmod-sched-flower is not set
 # CONFIG_PACKAGE_kmod-sched-fq-pie is not set
@@ -3631,7 +3630,7 @@ CONFIG_PACKAGE_kmod-sched-ctinfo=y
 # CONFIG_PACKAGE_kmod-sched-mqprio is not set
 # CONFIG_PACKAGE_kmod-sched-pie is not set
 # CONFIG_PACKAGE_kmod-sched-prio is not set
-CONFIG_PACKAGE_kmod-sched-red=y
+# CONFIG_PACKAGE_kmod-sched-red is not set
 # CONFIG_PACKAGE_kmod-sched-skbprio is not set
 # CONFIG_PACKAGE_kmod-sctp is not set
 # CONFIG_PACKAGE_kmod-sctp-diag is not set
@@ -3644,7 +3643,7 @@ CONFIG_PACKAGE_kmod-tcp-bbr=y
 # CONFIG_PACKAGE_kmod-tls is not set
 # CONFIG_PACKAGE_kmod-trelay is not set
 CONFIG_PACKAGE_kmod-tun=y
-CONFIG_PACKAGE_kmod-veth=y
+# CONFIG_PACKAGE_kmod-veth is not set
 # CONFIG_PACKAGE_kmod-vrf is not set
 # CONFIG_PACKAGE_kmod-vxlan is not set
 # CONFIG_PACKAGE_kmod-wireguard is not set
@@ -4580,7 +4579,7 @@ CONFIG_PACKAGE_libattr=y
 # CONFIG_PACKAGE_libiptext is not set
 # CONFIG_PACKAGE_libiptext-nft is not set
 # CONFIG_PACKAGE_libiptext6 is not set
-CONFIG_PACKAGE_libxtables=y
+# CONFIG_PACKAGE_libxtables is not set
 # CONFIG_IPTABLES_CONNLABEL is not set
 # end of Firewall
 
@@ -5637,15 +5636,7 @@ CONFIG_PACKAGE_libnl-tiny=y
 # CONFIG_PACKAGE_libpam is not set
 # CONFIG_PACKAGE_libparted is not set
 # CONFIG_PACKAGE_libpbc is not set
-CONFIG_PACKAGE_libpcap=y
-
-#
-# Configuration
-#
-# CONFIG_PCAP_HAS_USB is not set
-# CONFIG_PCAP_HAS_NETFILTER is not set
-# end of Configuration
-
+# CONFIG_PACKAGE_libpcap is not set
 # CONFIG_PACKAGE_libpci is not set
 # CONFIG_PACKAGE_libpciaccess is not set
 # CONFIG_PACKAGE_libpcre2 is not set
@@ -6868,7 +6859,7 @@ CONFIG_PACKAGE_ip-full=y
 # CONFIG_PACKAGE_ss is not set
 # CONFIG_PACKAGE_sslh is not set
 # CONFIG_PACKAGE_tc-bpf is not set
-CONFIG_PACKAGE_tc-full=y
+# CONFIG_PACKAGE_tc-full is not set
 # CONFIG_PACKAGE_tc-tiny is not set
 # CONFIG_PACKAGE_tcpproxy is not set
 # CONFIG_PACKAGE_udp-broadcast-relay-redux is not set
@@ -7508,7 +7499,7 @@ CONFIG_SAMBA4_SERVER_VFS=y
 # CONFIG_PACKAGE_tac_plus is not set
 # CONFIG_PACKAGE_tac_plus-pam is not set
 # CONFIG_PACKAGE_tayga is not set
-CONFIG_PACKAGE_tcpdump=y
+# CONFIG_PACKAGE_tcpdump is not set
 # CONFIG_PACKAGE_tcpdump-mini is not set
 CONFIG_PACKAGE_tcping=y
 # CONFIG_PACKAGE_telnet-bsd is not set
@@ -8215,7 +8206,7 @@ CONFIG_PACKAGE_dbus=y
 # CONFIG_PACKAGE_irqbalance is not set
 # CONFIG_PACKAGE_iwcap is not set
 # CONFIG_PACKAGE_iwinfo is not set
-CONFIG_PACKAGE_jq=y
+# CONFIG_PACKAGE_jq is not set
 CONFIG_PACKAGE_jshn=y
 # CONFIG_PACKAGE_kmod is not set
 # CONFIG_PACKAGE_lcd4linux-custom is not set
@@ -8589,5 +8580,5 @@ CONFIG_PACKAGE_ucode-mod-lua=y
 # ker:32M sys:256M
 # ffmepg ffprobe
 # passwall(nft xray hysteria) tailscale ttyd samba4
-# block-mount kmod-fs-ext4 usb2 usb3 bash python3(pip) vim-full fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump
-# by yoier .config-r3s-250525
+# block-mount kmod-fs-ext4 usb2 usb3 bash python3(pip) vim-full fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
+# by yoier .config-r3s-250316-1
