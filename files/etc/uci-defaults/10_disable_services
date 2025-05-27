@@ -1,4 +1,4 @@
 /etc/init.d/tailscale disable
-echo "#20 5 * * 1 /scripts/upgrade.sh online needback" >> /etc/crontabs/root
+echo "#20 5 1 * * /scripts/upgrade.sh online needback" >> /etc/crontabs/root
 
 exit 0
