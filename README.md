@@ -11,7 +11,7 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 <br>&ensp;ker:32M sys:256M
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
-<br>&ensp;passwall(nft xray hysteria) tailscale ttyd samba4 qosmate
+<br>&ensp;passwall(nft xray hysteria singbox) tailscale ttyd samba4 qosmate
 <br>&ensp;block-mount kmod-fs-ext4 usb2 usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
 <br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump
 
