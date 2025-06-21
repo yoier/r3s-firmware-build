@@ -51,7 +51,7 @@ function online () {
 		tagname=`curl -L https://api.github.com/repos/yoier/r3s-firmware-build/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
 	fi
 	if [[ $tagname == '' ]]; then loge "Check your network" red && exit 1; fi
-	# mount -t tmpfs -o remount,size=850m tmpfs /tmp
+	mount -t tmpfs -o remount,size=850m tmpfs /tmp
 	rm -rf /tmp/upg && mkdir /tmp/upg && cd /tmp/upg
 	sha256numr=`curl -L ${durl}${tagname}/sha256sums | grep "img.gz" | awk '{print $1}'`
 	if [[ $sha256numr == '' ]]; then loge "SHA256=null" red && exit 1; fi
@@ -62,7 +62,7 @@ function online () {
 
 function offline () {
 	if [ ! -e /tmp/upload/*.gz ] && [ ! -e /tmp/upload/sha256su* ]; then loge "No update_files in /tmp/upload/(*.gz,sha256sums)" red && exit 1; fi
-	# mount -t tmpfs -o remount,size=850m tmpfs /tmp
+	mount -t tmpfs -o remount,size=850m tmpfs /tmp
 	rm -rf /tmp/upg && mkdir /tmp/upg && cd /tmp/upg
 	mv /tmp/upload/* /tmp/upg
 	sha256numr=`cat sha256su* | grep "img.gz" | awk '{print $1}'`
