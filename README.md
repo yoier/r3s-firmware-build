@@ -5,10 +5,10 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 - 挂载存储盘仅支持ext4格式，备份数据、格式化为ext4格式方可挂载。挂载ext4避免各种疑难杂症。
 - tailscale默认处于禁用状态，如要启用终端执行service tailscale enable或管理页面>系统>启动项页面下手动开启。
 ---
-2025.05.25
+2025.06.21
 <br>文件系统ext4
 <br>内核以及系统分区大小
-<br>&ensp;ker:32M sys:256M
+<br>&ensp;ker:32M sys:384M
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
 <br>&ensp;passwall(nft xray hysteria singbox) tailscale ttyd samba4 qosmate
@@ -25,6 +25,8 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 - 2025.03.16 修改系统默认配置，语言、时区、NTP服务器等。定制版BusyBox,删除重复命令，~~新增常用命令~~。
 - 2025.05.25 新增kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump
 - 2025.05.27 集成luci-app-[qosmate](https://github.com/hudra0/qosmate)(测试推荐使用CAKE)
+- 2025.06.21 稳定版测试,stable版本采用opkg包管理器，pre版本采用apk包管理器
+- 2025.06.21 取消上传config备份
 
 ## Credits
 
