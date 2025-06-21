@@ -43,7 +43,13 @@ function checkver () {
 
 function online () {
 	durl="https://github.com/yoier/r3s-firmware-build/releases/download/"
-	tagname=`curl -L https://api.github.com/repos/yoier/r3s-firmware-build/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
+	if [[ $1 == "pre" ]]; then
+		loge "Install Prerelease!!!" red
+		tagname=$(curl -s "https://api.github.com/repos/yoier/r3s-firmware-build/releases" | jq -r '.[] | select(.prerelease == true) | .tag_name' | head -n 1)
+	else
+		loge "Install Stable Ver" blue
+		tagname=`curl -L https://api.github.com/repos/yoier/r3s-firmware-build/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'`
+	fi
 	if [[ $tagname == '' ]]; then loge "Check your network" red && exit 1; fi
 	# mount -t tmpfs -o remount,size=850m tmpfs /tmp
 	rm -rf /tmp/upg && mkdir /tmp/upg && cd /tmp/upg
@@ -132,6 +138,15 @@ case "$2" in
 		exit 1
 		;;
 esac
+case "$3" in
+	pre|stable)
+		loge "Backup options: $3" blue
+		;;
+	*)
+		loge "Unknown parameters: $3,exit 1..."
+		exit 1
+		;;
+esac
 loge "Wait 10 seconds before continuing" red
 wait_seds 10
 
@@ -142,7 +157,7 @@ wait_seds 10
 # 	if ! command -v resize2fs &> /dev/null; then loge "Installation failed,please check your network!" red && exit 1; else loge "Successful installation" green; fi
 # fi
 
-if [[ $1 == "online" ]]; then online; else offline; fi
+if [[ $1 == "online" ]]; then online $3; else offline; fi
 
 sha256numf=$(sha256sum *.gz | awk '{print $1}')
 if [[ $sha256numr != $sha256numf ]]; then loge "SHA256 verification failed!" red && exit 1; fi
