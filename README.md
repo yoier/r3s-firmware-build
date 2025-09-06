@@ -13,7 +13,7 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 <br>&ensp;ffmepg ffprobe
 <br>&ensp;passwall(nft xray hysteria singbox) tailscale ttyd samba4 qosmate
 <br>&ensp;block-mount kmod-fs-ext4 usb2 usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
-<br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump
+<br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump chroot debootstrap kmod-usb-storage
 
 
 ## 插件配置教程
@@ -27,6 +27,7 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 - 2025.05.27 集成luci-app-[qosmate](https://github.com/hudra0/qosmate)(测试推荐使用CAKE)
 - 2025.06.21 稳定版测试,stable版本采用opkg包管理器，pre版本采用apk包管理器
 - 2025.06.21 取消上传config备份
+- 2025.09.06 添加U盘设备支持(kmod-usb-storage)，新增chroot,debootstrap命令快速构建容器，用于运行glibc程序。
 
 ## Credits
 

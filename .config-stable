@@ -2635,7 +2635,7 @@ CONFIG_NETJSON_MONITORING_IWINFO=y
 # CONFIG_PACKAGE_bottom is not set
 # CONFIG_PACKAGE_btop is not set
 # CONFIG_PACKAGE_debian-archive-keyring is not set
-# CONFIG_PACKAGE_debootstrap is not set
+CONFIG_PACKAGE_debootstrap=y
 # CONFIG_PACKAGE_fluent-bit is not set
 # CONFIG_PACKAGE_gkrellmd is not set
 # CONFIG_PACKAGE_htop is not set
@@ -2690,7 +2690,7 @@ CONFIG_PACKAGE_u-boot-nanopi-r3s-rk3566=y
 # CONFIG_PACKAGE_zlib-dev is not set
 # end of Libraries
 
-# CONFIG_PACKAGE_ar is not set
+CONFIG_PACKAGE_ar=y
 # CONFIG_PACKAGE_autoconf is not set
 # CONFIG_PACKAGE_automake is not set
 # CONFIG_PACKAGE_binutils is not set
@@ -3013,7 +3013,7 @@ CONFIG_PACKAGE_r8169-firmware=y
 # CONFIG_PACKAGE_kmod-nbd is not set
 # CONFIG_PACKAGE_kmod-nvme is not set
 # CONFIG_PACKAGE_kmod-scsi-cdrom is not set
-# CONFIG_PACKAGE_kmod-scsi-core is not set
+CONFIG_PACKAGE_kmod-scsi-core=y
 # CONFIG_PACKAGE_kmod-scsi-generic is not set
 # CONFIG_PACKAGE_kmod-scsi-tape is not set
 # end of Block Devices
@@ -3838,9 +3838,9 @@ CONFIG_PACKAGE_kmod-usb-ehci=y
 # CONFIG_PACKAGE_kmod-usb-serial-simple is not set
 # CONFIG_PACKAGE_kmod-usb-serial-ti-usb is not set
 # CONFIG_PACKAGE_kmod-usb-serial-visor is not set
-# CONFIG_PACKAGE_kmod-usb-storage is not set
-# CONFIG_PACKAGE_kmod-usb-storage-extras is not set
-# CONFIG_PACKAGE_kmod-usb-storage-uas is not set
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-usb-storage-uas=y
 # CONFIG_PACKAGE_kmod-usb-uhci is not set
 # CONFIG_PACKAGE_kmod-usb-wdm is not set
 CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
@@ -5385,7 +5385,7 @@ CONFIG_PACKAGE_libavahi-client=y
 CONFIG_PACKAGE_libavahi-dbus-support=y
 # CONFIG_PACKAGE_libavahi-nodbus-support is not set
 # CONFIG_PACKAGE_libbase16384 is not set
-# CONFIG_PACKAGE_libbfd is not set
+CONFIG_PACKAGE_libbfd=y
 CONFIG_PACKAGE_libblkid=y
 CONFIG_PACKAGE_libblobmsg-json=y
 CONFIG_PACKAGE_libbpf=y
@@ -7682,7 +7682,15 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_pigz is not set
 # CONFIG_PACKAGE_unrar is not set
 CONFIG_PACKAGE_unzip=y
-# CONFIG_PACKAGE_xz-utils is not set
+CONFIG_PACKAGE_xz-utils=y
+# CONFIG_PACKAGE_lzmadec is not set
+# CONFIG_PACKAGE_lzmainfo is not set
+CONFIG_PACKAGE_xz=y
+# CONFIG_PACKAGE_xzdec is not set
+# CONFIG_PACKAGE_xzdiff is not set
+# CONFIG_PACKAGE_xzgrep is not set
+# CONFIG_PACKAGE_xzless is not set
+# CONFIG_PACKAGE_xzmore is not set
 # CONFIG_PACKAGE_zipcmp is not set
 # CONFIG_PACKAGE_zipmerge is not set
 # CONFIG_PACKAGE_ziptool is not set
@@ -8056,7 +8064,7 @@ CONFIG_PACKAGE_coreutils-base64=y
 # CONFIG_PACKAGE_coreutils-chgrp is not set
 # CONFIG_PACKAGE_coreutils-chmod is not set
 # CONFIG_PACKAGE_coreutils-chown is not set
-# CONFIG_PACKAGE_coreutils-chroot is not set
+CONFIG_PACKAGE_coreutils-chroot=y
 # CONFIG_PACKAGE_coreutils-cksum is not set
 # CONFIG_PACKAGE_coreutils-comm is not set
 # CONFIG_PACKAGE_coreutils-cp is not set
@@ -8114,7 +8122,7 @@ CONFIG_PACKAGE_coreutils-nohup=y
 # CONFIG_PACKAGE_coreutils-rmdir is not set
 # CONFIG_PACKAGE_coreutils-runcon is not set
 # CONFIG_PACKAGE_coreutils-seq is not set
-# CONFIG_PACKAGE_coreutils-sha1sum is not set
+CONFIG_PACKAGE_coreutils-sha1sum=y
 # CONFIG_PACKAGE_coreutils-sha224sum is not set
 # CONFIG_PACKAGE_coreutils-sha256sum is not set
 # CONFIG_PACKAGE_coreutils-sha384sum is not set
@@ -8616,5 +8624,5 @@ CONFIG_PACKAGE_ucode-mod-lua=y
 # package manager: opkg
 # ffmepg ffprobe
 # passwall(nft xray hysteria) tailscale ttyd samba4
-# block-mount kmod-fs-ext4 usb2 usb3 bash python3(pip) vim-full fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump
+# block-mount chroot kmod-fs-ext4 debootstrap kmod-usb-storage usb2 usb3 bash python3(pip) vim-full fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump
 # by yoier .config-r3s-250621-stable
