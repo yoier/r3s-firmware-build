@@ -5993,7 +5993,7 @@ CONFIG_PACKAGE_luci-app-hd-idle=y
 # CONFIG_PACKAGE_luci-app-mjpg-streamer is not set
 # CONFIG_PACKAGE_luci-app-mosquitto is not set
 # CONFIG_PACKAGE_luci-app-mwan3 is not set
-# CONFIG_PACKAGE_luci-app-natmap is not set
+CONFIG_PACKAGE_luci-app-natmap=y
 # CONFIG_PACKAGE_luci-app-nextdns is not set
 # CONFIG_PACKAGE_luci-app-nft-qos is not set
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set
@@ -6252,6 +6252,41 @@ CONFIG_PACKAGE_luci-i18n-firewall-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-hd-idle-yua is not set
 CONFIG_PACKAGE_luci-i18n-hd-idle-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-hd-idle-zh-tw is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-ar is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-bg is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-bn is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-ca is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-cs is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-da is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-de is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-el is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-es is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-fi is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-fr is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-he is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-hi is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-hu is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-it is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-ja is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-ko is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-lt is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-mr is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-ms is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-nl is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-no is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-pl is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-pt is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-pt-br is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-ro is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-ru is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-sk is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-sv is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-tr is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-uk is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-vi is not set
+# CONFIG_PACKAGE_luci-i18n-natmap-yua is not set
+CONFIG_PACKAGE_luci-i18n-natmap-zh-cn=y
+# CONFIG_PACKAGE_luci-i18n-natmap-zh-tw is not set
 # CONFIG_PACKAGE_luci-i18n-package-manager-ar is not set
 # CONFIG_PACKAGE_luci-i18n-package-manager-bg is not set
 # CONFIG_PACKAGE_luci-i18n-package-manager-bn is not set
@@ -7392,7 +7427,7 @@ CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_mptcpize is not set
 # CONFIG_PACKAGE_mtr-json is not set
 # CONFIG_PACKAGE_mtr-nojson is not set
-# CONFIG_PACKAGE_natmap is not set
+CONFIG_PACKAGE_natmap=y
 # CONFIG_PACKAGE_nbd is not set
 # CONFIG_PACKAGE_nbd-server is not set
 # CONFIG_PACKAGE_ncp is not set
@@ -8623,6 +8658,6 @@ CONFIG_PACKAGE_ucode-mod-lua=y
 # ker:32M sys:384M
 # package manager: opkg
 # ffmepg ffprobe
-# passwall(nft xray hysteria) tailscale ttyd samba4
+# passwall(nft xray hysteria) tailscale ttyd samba4 natmap
 # block-mount chroot kmod-fs-ext4 debootstrap kmod-usb-storage usb2 usb3 bash python3(pip) vim-full fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump
-# by yoier .config-r3s-250621-stable
+# by yoier .config-r3s-251021-stable
