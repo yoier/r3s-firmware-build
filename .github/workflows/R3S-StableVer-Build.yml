@@ -46,7 +46,7 @@ jobs:
         echo "上一次编译版本：$this_latest_name"
         n_latest_name=$(curl --silent "https://api.github.com/repos/openwrt/openwrt/releases/latest"  | grep '"tag_name":'  | sed -E 's/.*"([^"]+)".*/\1/')
         echo "最新源码版本：$n_latest_name"
-        if [[ $this_latest_name == $n_latest_name ]]; then
+        if [[ "$this_latest_name" == "$n_latest_name" ]]; then
             echo "无需更新"
             exit 1
         fi
