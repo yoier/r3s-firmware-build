@@ -20,7 +20,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-24.10
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config-stable
   DIY_P1_SH: diy-part1.sh
@@ -42,6 +42,15 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        this_latest_name=$(curl -s https://api.github.com/repos/yoier/r3s-firmware-build/releases/latest | grep '"name"' | head -n 1 | cut -d '"' -f4 | sed -n 's/.*-\(v[0-9.]*\)-.*/\1/p')
+        echo "上一次编译版本：$this_latest_name"
+        n_latest_name=$(curl --silent "https://api.github.com/repos/openwrt/openwrt/releases/latest"  | grep '"tag_name":'  | sed -E 's/.*"([^"]+)".*/\1/')
+        echo "最新源码版本：$n_latest_name"
+        if [[ $this_latest_name == $n_latest_name ]]; then
+            echo "无需更新"
+            exit 1
+        fi
+        echo "latest_tag=$n_latest_tag" >> $GITHUB_ENV
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo docker image prune --all --force
         sudo -E apt-get -qq update
@@ -57,14 +66,20 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        git clone --depth 1 $REPO_URL --branch $latest_tag openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
+        # fix some build error
+        git clone --depth=1 --branch master https://github.com/openwrt/packages.git tmp_packages
+        rm -rf feeds/packages/lang/golang
+        mv tmp_packages/lang/golang feeds/packages/lang
+        rm -rf tmp_packages
+        # end
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
@@ -132,7 +147,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-stable" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-$latest_tag-stable" >> $GITHUB_OUTPUT
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
