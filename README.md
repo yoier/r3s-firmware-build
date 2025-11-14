@@ -29,6 +29,7 @@ ext4文件系统，支持自动更新扩容(删除计划任务"#20 5 * * 1 /scri
 - 2025.06.21 取消上传config备份。
 - 2025.09.06 添加U盘设备支持(kmod-usb-storage)，新增chroot,debootstrap命令快速构建容器，用于运行glibc程序。
 - 2025.10.21 增加natmap包，NAT-1映射公网。
+- 2025.11.15 稳定版增加usbutils，可用lsusb命令，删除usb2。
 
 ## Credits
 
