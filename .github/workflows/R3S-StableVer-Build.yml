@@ -38,9 +38,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
+    - name: Check version
+      id: check_ver
       run: |
         this_latest_name=$(curl -s https://api.github.com/repos/yoier/r3s-firmware-build/releases/latest | grep '"name"' | head -n 1 | cut -d '"' -f4 | sed -n 's/.*-\(v[0-9.]*\)-.*/\1/p')
         echo "上一次编译版本：$this_latest_name"
@@ -48,9 +47,17 @@ jobs:
         echo "最新源码版本：$n_latest_name"
         if [[ "$this_latest_name" == "$n_latest_name" ]]; then
             echo "无需更新"
-            exit 1
+            echo "need_build=false" >> $GITHUB_OUTPUT
+        else
+            echo "need_build=true" >> $GITHUB_OUTPUT
+            echo "latest_tag=$n_latest_name" >> $GITHUB_ENV
         fi
-        echo "latest_tag=$n_latest_name" >> $GITHUB_ENV
+
+    - name: Initialization environment
+      if: steps.check_ver.outputs.need_build == 'true'
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo docker image prune --all --force
         sudo -E apt-get -qq update
@@ -63,6 +70,7 @@ jobs:
         sudo chown $USER:$GROUPS /workdir
 
     - name: Clone source code
+      if: steps.check_ver.outputs.need_build == 'true'  
       working-directory: /workdir
       run: |
         df -hT $PWD
@@ -70,6 +78,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
+      if: steps.check_ver.outputs.need_build == 'true'
       run: |
         # [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
@@ -77,6 +86,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
+      if: steps.check_ver.outputs.need_build == 'true'
       run: |
         cd openwrt && ./scripts/feeds update -a
         # fix some build error
@@ -87,9 +97,11 @@ jobs:
         # end
 
     - name: Install feeds
+      if: steps.check_ver.outputs.need_build == 'true'
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: Load custom configuration
+      if: steps.check_ver.outputs.need_build == 'true'
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
@@ -98,6 +110,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: Download package
+      if: steps.check_ver.outputs.need_build == 'true'
       id: package
       run: |
         cd openwrt
@@ -107,6 +120,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile the firmware
+      if: steps.check_ver.outputs.need_build == 'true'
       id: compile
       run: |
         cd openwrt
@@ -118,7 +132,7 @@ jobs:
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Check space usage
-      if: (!cancelled())
+      if: steps.check_ver.outputs.need_build == 'true' && (!cancelled())
       run: df -hT
 
     - name: Upload bin directory
@@ -130,7 +144,7 @@ jobs:
 
     - name: Organize files
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled() && steps.compile.outputs.status == 'success'
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
@@ -146,7 +160,7 @@ jobs:
 
     - name: Generate release tag
       id: tag
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled() && steps.compile.outputs.status == 'success'
       run: |
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")-$latest_tag-stable" >> $GITHUB_OUTPUT
         touch release.txt
@@ -164,16 +178,17 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
+      if: steps.check_ver.outputs.need_build == 'true'
       uses: Mattraks/delete-workflow-runs@main
       with:
         retain_days: 0
-        keep_minimum_runs: 3
+        keep_minimum_runs: 8
 
     - name: Remove old Releases
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled() && steps.check_ver.outputs.need_build == 'true'
       uses: dev-drprasad/delete-older-releases@master
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 3
+        keep_latest: 8
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
