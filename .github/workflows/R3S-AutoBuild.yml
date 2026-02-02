@@ -57,6 +57,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
+        git config --global http.postBuffer 524288000
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
