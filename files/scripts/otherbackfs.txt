@@ -1,3 +1,6 @@
 /usr/share/v2ray
 /scripts/firstboot.sh
 /scripts/otherbackfs.txt
+/usr/bin/hysteria
+/usr/bin/sing-box
+/usr/bin/xray
