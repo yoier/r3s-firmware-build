@@ -57,8 +57,6 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git config --global http.version HTTP/1.1
-        git config --global http.postBuffer 524288000
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
@@ -67,6 +65,11 @@ jobs:
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
+        sed -i 's|https://git.openwrt.org/feed/packages.git|https://github.com/openwrt/packages.git|g' feeds.conf.default
+        sed -i 's|https://git.openwrt.org/project/luci.git|https://github.com/openwrt/luci.git|g' feeds.conf.default
+        sed -i 's|https://git.openwrt.org/feed/routing.git|https://github.com/openwrt/routing.git|g' feeds.conf.default
+        sed -i 's|https://git.openwrt.org/feed/telephony.git|https://github.com/openwrt/telephony.git|g' feeds.conf.default
+        rm -rf staging_dir/hostpkg staging_dir/host build_dir/host
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
