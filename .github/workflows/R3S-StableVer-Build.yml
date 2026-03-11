@@ -41,7 +41,7 @@ jobs:
     - name: Check version
       id: check_ver
       run: |
-        this_latest_name=$(curl -s https://api.github.com/repos/yoier/r3s-firmware-build/releases/latest | grep '"name"' | head -n 1 | cut -d '"' -f4 | sed -n 's/.*-\(v[0-9.]*\)-.*/\1/p')
+        this_latest_name=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | grep '"name"' | head -n 1 | cut -d '"' -f4 | sed -n 's/.*-\(v[0-9.]*\)-.*/\1/p')
         echo "上一次编译版本：$this_latest_name"
         n_latest_name=$(curl --silent "https://api.github.com/repos/openwrt/openwrt/releases/latest"  | grep '"tag_name":'  | sed -E 's/.*"([^"]+)".*/\1/')
         echo "最新源码版本：$n_latest_name"
