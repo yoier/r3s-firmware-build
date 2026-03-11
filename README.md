@@ -1,9 +1,9 @@
 ## R3S固件-YEE
 ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /scripts/upgrade.sh online needback stable"前的注释以启用更新，更新时间为每月一号凌晨5:20(实测16GB的Class10 sd卡更新约2分钟)。自定义保存配置文件，固件包含scripts文件夹(仅在无emmc版本上测试过)，默认禁用tailscale启动项。<br>/scripts<br>└─first-boot.sh---每次系统更新后的首次启动都会运行该脚本。<br>└─otherbackfs.txt---使用脚本更新系统时要额外保留的文件/文件夹(不支持#注释)。<br>└─upgrade.sh---系统更新脚本(切勿在其他固件执行该脚本，因为kernel分区大小可能不同)。
 - 系统更新默认会保留sysupgrade -b back.tar.gz输出的文件(通常包含/etc目录下的配置)。运行命令并打开压缩包查看默认保留文件，确保不会与otherbackfs.txt文件里的文件/文件夹重复，防止重复覆盖配置。
-- upgrade.sh可选项online|offline needback|noback stable|pre<br>online-在线下载固件并更新(确保您的网络与Github连接通畅)。<br>offline-离线更新，需要手动上传固件gz以及sha256sum到/tmp/upload文件夹下。<br>needback-保留配置文件以及otherbackfs.txt里的文件/文件夹。<br>noback-不保留配置文件。<br>stable-使用稳定版。<br>pre-使用测试版。(稳定版和测试版切换时建议选择不保留配置文件)
+- upgrade.sh可选项online|offline needback|noback stable|pre<br>online-在线下载固件并更新(确保您的网络与Github连接通畅)。<br>offline-离线更新，需要手动上传固件gz以及sha256sum到/tmp/upload文件夹下。<br>needback-保留配置文件以及otherbackfs.txt里的文件/文件夹。<br>noback-不保留配置文件。<br>stable-使用稳定版。<br>pre-使用测试版。~~(稳定版和测试版切换时建议选择不保留配置文件)~~ 自v25.12起可忽略
 - 挂载存储盘仅支持ext4格式，备份数据、格式化为ext4格式方可挂载。挂载ext4避免各种疑难杂症。
-- tailscale默认处于禁用状态(由于tailscale路由模式和passwall2透明代理冲突谨慎使用)推荐在旁路网关使用，如要启用终端执行service tailscale enable或管理页面>系统>启动项页面下手动开启。
+- tailscale默认处于禁用状态(由于tailscale路由模式和passwall2透明代理冲突谨慎使用)推荐在旁路网关使用，如要启用终端执行service tailscale enable或管理页面>系统>启动项页面下手动开启(启用后不登录配置会一直有报错日志，建议不使用就禁用它)。
 
 /back.tar.gz
 <br>└─上个版本sysupgrade -b 生成的备份文件(不包含otherbackfs.txt里的文件，如果体积太大占用存储空间)
@@ -31,13 +31,14 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2025.03.16 固件测试完成，修改一些错误。固件测试通过，发布每周版。稳定版固件测试中。
 - 2025.03.16 修改系统默认配置，语言、时区、NTP服务器等。定制版BusyBox,删除重复命令，~~新增常用命令~~。
 - 2025.05.25 新增kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump。
-- 2025.05.27 集成luci-app-[qosmate](https://github.com/hudra0/qosmate)(测试推荐使用CAKE)。
-- 2025.06.21 稳定版测试,stable版本采用opkg包管理器，pre版本采用apk包管理器。
+- 2025.05.27 集成luci-app-[qosmate](https://github.com/hudra0/qosmate)(测试推荐使用CAKE,关闭防火墙->路由/NAT 卸载，开启网络->接口->全局网络选项->数据包引导启用(所有CPU)，流量导向（RPS）建议128；HFSC模式与passwall2透明代理冲突，同时开启后无法上网)。
+- 2025.06.21 稳定版测试,~~stable版本采用opkg包管理器~~，pre版本采用apk包管理器。
 - 2025.06.21 取消上传config备份。
 - 2025.09.06 添加U盘设备支持(kmod-usb-storage)，新增chroot,debootstrap命令快速构建容器，用于运行glibc程序。
 - 2025.10.21 增加natmap包，NAT-1映射公网。
 - 2025.11.15 稳定版增加usbutils，可用lsusb命令，删除usb2。
 - 2026.02.03 修复工作流程，增加备份文件xray,singbox,hysteria2避免更新后版本降低;修改nf-conntrack默认配置;更新README
+- 2026.03.11 openwrt已推出v25.12.0，更新Stable版本的.config配置文件，自v25.12.0起默认采用apk包管理器！！(来自openwrt更新日志[40b8fba](https://git.openwrt.org/openwrt/openwrt/commit/?id=40b8fbaa9754c86480eefc3692c9116a51a64718))；更新wokerflow脚本，检测版本时指向自身仓库，而非本仓库，确保其他用户fork后正常运行R3S-StableVer-Build.yml。
 
 ## Credits
 
