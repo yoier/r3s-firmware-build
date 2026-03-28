@@ -39,6 +39,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2025.11.15 稳定版增加usbutils，可用lsusb命令，删除usb2。
 - 2026.02.03 修复工作流程，增加备份文件xray,singbox,hysteria2避免更新后版本降低;修改nf-conntrack默认配置;更新README
 - 2026.03.11 openwrt已推出v25.12.0，更新Stable版本的.config配置文件，自v25.12.0起默认采用apk包管理器！！(来自openwrt更新日志[40b8fba](https://git.openwrt.org/openwrt/openwrt/commit/?id=40b8fbaa9754c86480eefc3692c9116a51a64718))；更新wokerflow脚本，检测版本时指向自身仓库，而非本仓库，确保其他用户fork后正常运行R3S-StableVer-Build.yml。
+- 2026.03.28 stable版增加zram-swap,kmod-vfat。
 
 ## Credits
 
