@@ -17,6 +17,7 @@ cat > feeds.tmp <<'EOF'
 src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main
 src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2.git;main
 src-git kenzo https://github.com/kenzok8/openwrt-packages.git;master
+EOF
 cat feeds.conf.default >> feeds.tmp
 mv feeds.tmp feeds.conf.default
 git clone https://github.com/hudra0/qosmate.git package/qosmate
