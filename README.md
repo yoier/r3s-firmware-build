@@ -12,14 +12,14 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 <br>└─当前版本系统固件sha256值，更新时会读取。(删除后会直接下载最新版覆盖更新)
 
 ---
-2025.06.21
+2026.04.26
 <br>文件系统ext4
 <br>内核以及系统分区大小
 <br>&ensp;ker:32M sys:384M
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
-<br>&ensp;passwall2(nft xray hysteria singbox) tailscale ttyd samba4 qosmate natmap
-<br>&ensp;block-mount kmod-fs-ext4 ~~usb2~~ usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
+<br>&ensp;passwall2(nft xray ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance
+<br>&ensp;block-mount kmod-fs-ext4 kmod-vfat ~~usb2~~ usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
 <br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump chroot debootstrap kmod-usb-storage
 
 
@@ -40,6 +40,8 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2026.02.03 修复工作流程，增加备份文件xray,singbox,hysteria2避免更新后版本降低;修改nf-conntrack默认配置;更新README
 - 2026.03.11 openwrt已推出v25.12.0，更新Stable版本的.config配置文件，自v25.12.0起默认采用apk包管理器！！(来自openwrt更新日志[40b8fba](https://git.openwrt.org/openwrt/openwrt/commit/?id=40b8fbaa9754c86480eefc3692c9116a51a64718))；更新wokerflow脚本，检测版本时指向自身仓库，而非本仓库，确保其他用户fork后正常运行R3S-StableVer-Build.yml。
 - 2026.03.28 stable版增加zram-swap,kmod-vfat。
+- 2026.04.25 取消dnsmasq_full_broken_rtc使dnsmasq生成时间戳格式租约文件以修复luci rpc调用ubus call luci-rpc getDHCPLeases显示剩余时间始终为"已过期"("expires": 0)问题。[dnsmasq](https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html)
+- 2026.04.26 更新Action工作流程,增加rootfs分区大小至512M,增加irqbalance包。
 
 ## Credits
 
