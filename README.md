@@ -15,7 +15,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 2026.04.26
 <br>文件系统ext4
 <br>内核以及系统分区大小
-<br>&ensp;ker:32M sys:384M
+<br>&ensp;ker:32M sys:512M
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
 <br>&ensp;passwall2(nft xray ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance
