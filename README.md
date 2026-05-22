@@ -18,7 +18,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 <br>&ensp;ker:32M sys:512M
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
-<br>&ensp;passwall2(nft xray ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance
+<br>&ensp;passwall2(nft xray ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance smartdns
 <br>&ensp;block-mount kmod-fs-ext4 kmod-vfat ~~usb2~~ usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
 <br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump chroot debootstrap kmod-usb-storage
 
@@ -43,6 +43,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2026.04.25 取消dnsmasq_full_broken_rtc使dnsmasq生成时间戳格式租约文件以修复luci rpc调用ubus call luci-rpc getDHCPLeases显示剩余时间始终为"已过期"("expires": 0)问题。[dnsmasq](https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html)
 - 2026.04.26 更新Action工作流程,增加rootfs分区大小至512M,增加irqbalance包。
 - 2026.05.12 增加htop命名，方便查看进程;增加earlyoom内存保护守护进程，爆内存提前杀掉高内存进程，防止系统卡死，无法进入后台。
+- 2026.05.22 增加smartdns包。
 
 ## Credits
 
