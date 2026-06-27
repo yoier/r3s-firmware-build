@@ -42,9 +42,10 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2026.03.28 stable版增加zram-swap,kmod-vfat。
 - 2026.04.25 取消dnsmasq_full_broken_rtc使dnsmasq生成时间戳格式租约文件以修复luci rpc调用ubus call luci-rpc getDHCPLeases显示剩余时间始终为"已过期"("expires": 0)问题。[dnsmasq](https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html)
 - 2026.04.26 更新Action工作流程,增加rootfs分区大小至512M,增加irqbalance包。
-- 2026.05.12 增加htop命名，方便查看进程;增加earlyoom内存保护守护进程，爆内存提前杀掉高内存进程，防止系统卡死，无法进入后台。
+- 2026.05.12 增加htop命令(官方内核已知无法获取磁盘读写速度)，方便查看进程;增加earlyoom内存保护守护进程，爆内存提前杀掉高内存进程，防止系统卡死，无法进入后台。
 - 2026.05.22 增加smartdns包。
-- 2026.06.15 同步pre版本配置文件
+- 2026.06.15 同步pre版本配置文件。
+- 2026.06.26 增加iperf3包，支持iperf3命令。
 
 ## Credits
 
