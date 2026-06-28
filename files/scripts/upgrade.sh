@@ -32,6 +32,7 @@ while [ $# -gt 0 ]; do
 				mount -t tmpfs -o remount,size=850m tmpfs $upgrade_path
 				loge "Upgrade path not specified, using default: $upgrade_path" blue
 			else
+                SET_PATH=1
 				upgrade_path="$2"
 			fi
             loge "Upgrade path: $upgrade_path" blue
@@ -148,6 +149,7 @@ EOF
 	echo $sha256numr > thisver.sha
 	otherback /mnt/img
 	loge "Restoring backup completed,umount" green
+    if [[ $SET_PATH == 1 ]]; then mv back.tar.gz $upgrade_path/backup_$(date +%Y%m%d_%H%M%S).tar.gz; fi
 	# rm back.tar.gz
 	cd $upgrade_path/upg
 	wait_seds 3
