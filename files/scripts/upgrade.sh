@@ -4,7 +4,7 @@
 # curl -L -o /scripts/firstboot.sh https://raw.githubusercontent.com/yoier/r3s-firmware-build/main/files/scripts/firstboot.sh
 # curl -L -o /scripts/upgrade.sh https://raw.githubusercontent.com/yoier/r3s-firmware-build/main/files/scripts/upgrade.sh
 # curl -L -o /scripts/otherbackfs.txt https://raw.githubusercontent.com/yoier/r3s-firmware-build/main/files/scripts/otherbackfs.txt
-# 20 5 * * 1 /scripts/upgrade.sh -w online -b needback -p /tmp
+# 20 5 1 * * /scripts/upgrade.sh -w online -b needback -p /tmp
 # This script is powered by yoier
 OTHER_BACK_FILE="/scripts/otherbackfs.txt"
 UPGRADE_PATH_DEFAULT="/tmp"
