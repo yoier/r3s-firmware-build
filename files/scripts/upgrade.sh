@@ -7,45 +7,50 @@
 # 20 5 1 * * /scripts/upgrade.sh -w online -b needback -p /tmp
 # This script is powered by yoier
 OTHER_BACK_FILE="/scripts/otherbackfs.txt"
-UPGRADE_PATH_DEFAULT="/tmp"
+upgrade_path="/tmp"
 
 while [ $# -gt 0 ]; do
     case "$1" in
         -w|--way)
             upgrade_way="$2"
-            loge "Update mode: $upgrade_way" blue
+            echo "Update mode: $upgrade_way"
             shift 2
             ;;
         -b|--backup)
             backup_option="$2"
-            loge "Backup options: $backup_option" blue
+            echo "Backup options: $backup_option"
             shift 2
             ;;
         -v|--version)
             upgrade_version="$2"
-            loge "Upgrade version: $upgrade_version" blue
+            echo "Upgrade version: $upgrade_version"
             shift 2
             ;;
 		-p|--path)
-			if [ -z "$2" ]; then
-				upgrade_path=$UPGRADE_PATH_DEFAULT
-				mount -t tmpfs -o remount,size=850m tmpfs $upgrade_path
-				loge "Upgrade path not specified, using default: $upgrade_path" blue
+			if [[ "$2" == $upgrade_path ]]; then
+				#mount -t tmpfs -o remount,size=1024m tmpfs $upgrade_path
+                avail_kb=$(awk '/MemAvailable/ {print $2}' /proc/meminfo)
+                if [ "$avail_kb" -gt $((896 * 1024)) ]; then
+                    echo "free Mem OK"
+                else
+                    echo "free Mem so low"
+                    exit 1
+                fi
+				echo "Upgrade path not specified, using default: $upgrade_path"
 			else
                 SET_PATH=1
 				upgrade_path="$2"
+                [ -d "$upgrade_path" ] || mkdir -p "$upgrade_path"
 			fi
-            loge "Upgrade path: $upgrade_path" blue
+            echo "Upgrade path: $upgrade_path"
             shift 2
             ;;
         *)
-            loge "Unknown parameters: $1,exit 1..." red
+            echo "Unknown parameters: $1,exit 1..."
             exit 1
             ;;
     esac
 done
-
-LOG_FILE="$upgrade_path/update_scr.log"
 
 function loge () {
 # red 1;blue 2;green 3
@@ -63,6 +68,8 @@ function loge () {
 	echo -e ${color}"$1\e[0m"
 	echo "$(date '+%Y-%m-%d %H:%M:%S'): $1" >> "$LOG_FILE"
 }
+
+LOG_FILE="$upgrade_path/update_scr.log"
 
 function wait_seds() {
 	local seconds="$1"
@@ -100,7 +107,6 @@ function online () {
 function offline () {
 	if [ ! -e $upgrade_path/upload/*.gz ] && [ ! -e $upgrade_path/upload/sha256su* ]; then loge "No update_files in $upgrade_path/upload/(*.gz,sha256sums)" red && exit 1; fi
 	rm -rf $upgrade_path/upg && mkdir $upgrade_path/upg && cd $upgrade_path/upg
-	mv $upgrade_path/upload/* $upgrade_path/upg
 	sha256numr=`cat sha256su* | grep "img.gz" | awk '{print $1}'`
 	if [[ $sha256numr == '' ]]; then loge "sha256=null" red && exit 1; fi
 	checkver
@@ -158,20 +164,12 @@ EOF
 
 # main
 check_input() {
-    case "$1" in
-        $2)
-            return 0
-            ;;
-        *)
-            loge "$1: Unknown parameters: $2,return 1..." red
-            return 1
-            ;;
-    esac
+    echo "$2" | grep -qw "$1" && return 0
+    loge "$1: Unknown parameters in: $2" red
+    return 1
 }
-
-check_input "$upgrade_way" "online|offline" || exit 1
-check_input "$backup_option" "needback|noback" || exit 1
-check_input "$upgrade_version" "pre|stable" || exit 1
+check_input $upgrade_way "online|offline" || exit 1
+check_input $backup_option "needback|noback" || exit 1
 loge "Wait 10 seconds before continuing" red
 wait_seds 10
 
@@ -183,13 +181,14 @@ wait_seds 10
 # fi
 
 if [[ $upgrade_way == "online" ]]; then online $upgrade_version; else offline; fi
-sha256numf=$(sha256sum *.gz | awk '{print $1}')
+sha256numf=$(sha256sum r3s-ext4-sysupgrade.img.gz | awk '{print $1}')
 if [[ $sha256numr != $sha256numf ]]; then loge "SHA256 verification failed!" red && exit 1; fi
 loge "sha256 verification successful" green
 #镜像文件名
 IMG_NAME="FriendlyWrt.img"
-mv *.gz ${IMG_NAME}.gz
-gzip -dv *.gz
+mv r3s-ext4-sysupgrade.img.gz ${IMG_NAME}.gz
+gzip -dvf ${IMG_NAME}.gz
+
 ##main
 #当前ext4系统所在盘
 DEV_NAME=$(lsblk -no PKNAME,MOUNTPOINT | awk '$2=="/"{print $1}')
