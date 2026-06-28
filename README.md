@@ -1,5 +1,8 @@
 ## R3S固件-YEE
-ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /scripts/upgrade.sh -w online -b needback -p /tmp"前的注释以启用更新，更新时间为每月一号凌晨5:20(实测16GB的Class10 sd卡更新约2分钟)。自定义保存配置文件，固件包含scripts文件夹(仅在无emmc版本上测试过)，默认禁用tailscale启动项。<br>/scripts<br>└─first-boot.sh---每次系统更新后的首次启动都会运行该脚本。<br>└─otherbackfs.txt---使用脚本更新系统时要额外保留的文件/文件夹(不支持#注释)。<br>└─upgrade.sh---系统更新脚本(切勿在其他固件执行该脚本，因为kernel分区大小可能不同)。
+ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /scripts/upgrade.sh -w online -b needback -p /tmp"前的注释以启用更新，更新时间为每月一号凌晨5:20 ~~(实测16GB的Class10 sd卡更新约2分钟)~~。自定义保存配置文件，固件包含scripts文件夹(仅在无emmc版本上测试过)，默认禁用tailscale启动项。<br>/scripts<br>└─first-boot.sh---每次系统更新后的首次启动都会运行该脚本。<br>└─otherbackfs.txt---使用脚本更新系统时要额外保留的文件/文件夹(不支持#注释)。<br>└─upgrade.sh---系统更新脚本(切勿在其他固件执行该脚本，因为kernel分区大小可能不同)。
+- 危险！！！ 路径(--path)使用/tmp确保内存至少有896MB预留空间，否则刷写失败。1G内存用户首次更新需挂载U盘，并指向挂载点。后续升级可挂载并指向user_data分区(系统盘)。
+- 首次更新分区会全盘写入，根据存储大小约2~5min；后续更新只刷写kernel和rootfs分区，约1-2min(测试卡为Class10)。
+- 首次更新后手动挂载user_data分区，swap分区(可选)。后续手动或自动升级--path可指向user_data分区挂载点下的目录(如/mnt/user_data/upgrade)。
 - 系统更新默认会保留sysupgrade -b back.tar.gz输出的文件(通常包含/etc目录下的配置)。运行命令并打开压缩包查看默认保留文件，确保不会与otherbackfs.txt文件里的文件/文件夹重复，防止重复覆盖配置。
 - upgrade.sh可选参数<br>--way online|offline<br>&emsp;online: 在线下载固件并更新(确保您的网络与Github连接通畅。<br>&emsp;offline: 离线更新，需要手动上传固件gz以及sha256sum到/tmp/upload文件夹下。<br>--backup  needback|noback <br>&emsp;needback: 保留配置文件以及otherbackfs.txt里的文件/文件夹。<br>&emsp;noback: 不保留配置文件。<br>--version stable|pre<br>&emsp;stable: 使用稳定版(每次官方稳定版源码发布新版本更新)。<br>&emsp;pre: 使用测试版(每周更新)。<br>--path /tmp(升级暂存路径)<br>&emsp;绝对路径: 固件下载，执行扩容等操作，以及脚本输出日志存放位置<br>~~(稳定版和测试版切换时建议选择不保留配置文件)~~ 自v25.12起可忽略
 - 挂载存储盘仅支持ext4格式，备份数据、格式化为ext4格式方可挂载。挂载ext4避免各种疑难杂症。
