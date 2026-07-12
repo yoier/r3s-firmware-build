@@ -17,6 +17,8 @@ cat > feeds.tmp <<'EOF'
 src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main
 src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2.git;main
 src-git kenzo https://github.com/kenzok8/openwrt-packages.git;master
+src-git openwrtdaede https://github.com/kenzok8/openwrt-daede;main
+src-git vmlinuxbtf https://github.com/kenzok8/vmlinux-btf;main
 EOF
 cat feeds.conf.default >> feeds.tmp
 mv feeds.tmp feeds.conf.default

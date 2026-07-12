@@ -21,7 +21,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 <br>&ensp;ker:32M sys:512M
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
-<br>&ensp;passwall2(nft xray ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance smartdns
+<br>&ensp;passwall2(nft xray ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance smartdns daede
 <br>&ensp;block-mount kmod-fs-ext4 kmod-vfat ~~usb2~~ usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
 <br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump chroot debootstrap kmod-usb-storage iperf3
 
@@ -50,6 +50,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2026.06.15 同步pre版本配置文件。
 - 2026.06.26 增加iperf3包，支持iperf3命令。
 - 2026.06.28 更新自动升级脚本upgrade.sh。若配置了自动升级计划任务需手动更新parameter(20 5 1 * * /scripts/upgrade.sh -w online -b needback -p /tmp)
+- 2026.07.12 增加[daede](https://github.com/kenzok8/openwrt-daede)([daed](https://github.com/daeuniverse/daed))包。更新Action编译依赖。
 
 ## Credits
 
