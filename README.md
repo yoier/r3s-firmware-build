@@ -51,6 +51,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2026.06.26 增加iperf3包，支持iperf3命令。
 - 2026.06.28 更新自动升级脚本upgrade.sh。若配置了自动升级计划任务需手动更新parameter(20 5 1 * * /scripts/upgrade.sh -w online -b needback -p /tmp)
 - 2026.07.12 增加[daede](https://github.com/kenzok8/openwrt-daede)([daed](https://github.com/daeuniverse/daed))包。更新Action编译依赖。
+- 2026.07.13 增加dae包。更新首次启动脚本，添加软链接/usr/share/v2ray/geoXX -> /usr/share/daed/geoXX，启动daed需要读取daed文件夹下资源；若使用dae则不用。经测试，推荐使用dae后端，但需了解[配置文档](https://github.com/daeuniverse/dae/blob/main/example.dae)；daed有可视化面板适合新手或需要数据统计的用，进阶模式也可自定义配置(资源占用相比dae较多)。就个人使用体验，相比passwall2在日常使用下几乎没有区别；dae的流量处理方式虽不同，但支持功能和协议相对较少，如不能开Socks，搭建服务器端等，同时网上教程较少，需要dns分流或建立分流规则需要了解其原理，手搓配置，配置有问题，网络也会受到影响。
 
 ## Credits
 
