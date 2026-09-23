@@ -90,18 +90,17 @@ jobs:
       run: |
         cd openwrt && ./scripts/feeds update -a
         # fix some build error
-        git clone --depth=1 --branch master https://github.com/openwrt/packages.git tmp_packages
-        rm -rf feeds/packages/lang/golang
-        mv tmp_packages/lang/golang feeds/packages/lang
-        rm -rf tmp_packages
+        # git clone --depth=1 --branch master https://github.com/openwrt/packages.git tmp_packages
+        # rm -rf feeds/packages/lang/golang
+        # mv tmp_packages/lang/golang feeds/packages/lang
+        # rm -rf tmp_packages
         # end
-        ./scripts/feeds update -a
+        # ./scripts/feeds update -a
 
     - name: Install feeds
       if: steps.check_ver.outputs.need_build == 'true'
       run: |
         cd openwrt && ./scripts/feeds install -a
-        make defconfig
 
     - name: Load custom configuration
       if: steps.check_ver.outputs.need_build == 'true'
@@ -117,6 +116,7 @@ jobs:
       id: package
       run: |
         cd openwrt
+        make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
