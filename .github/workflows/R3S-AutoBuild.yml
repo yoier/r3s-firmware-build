@@ -49,7 +49,7 @@ jobs:
         sudo wget -qO /tmp/llvm.sh https://apt.llvm.org/llvm.sh
         sudo bash /tmp/llvm.sh 18
         echo "/usr/lib/llvm-18/bin" >> "$GITHUB_PATH"
-        sudo export PATH="/usr/lib/llvm-18/bin:$PATH"
+        export PATH="/usr/lib/llvm-18/bin:$PATH"
         sudo which clang
         sudo clang --version
         sudo -E apt-get -qq autoremove --purge
