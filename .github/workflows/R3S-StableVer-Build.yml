@@ -92,14 +92,14 @@ jobs:
     - name: Update feeds
       if: steps.check_ver.outputs.need_build == 'true'
       run: |
-        cd openwrt && ./scripts/feeds update -a
+        cd openwrt
         # fix some build error
-        # git clone --depth=1 --branch master https://github.com/openwrt/packages.git tmp_packages
-        # rm -rf feeds/packages/lang/golang
-        # mv tmp_packages/lang/golang feeds/packages/lang
-        # rm -rf tmp_packages
+        git clone --depth=1 --branch master https://github.com/openwrt/packages.git tmp_packages
+        rm -rf feeds/packages/lang/golang
+        mv tmp_packages/lang/golang feeds/packages/lang
+        rm -rf tmp_packages
         # end
-        # ./scripts/feeds update -a
+        ./scripts/feeds update -a
 
     - name: Install feeds
       if: steps.check_ver.outputs.need_build == 'true'
