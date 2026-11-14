@@ -21,7 +21,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 <br>&ensp;ker:32M sys:512M
 <br>包含的包
 <br>&ensp;ffmepg ffprobe
-<br>&ensp;passwall2(nft xray ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance smartdns daede
+<br>&ensp;passwall2(nft ~~xray~~ ~~hysteria~~ singbox) tailscale ttyd samba4 qosmate natmap zram-swap irqbalance smartdns daede
 <br>&ensp;block-mount kmod-fs-ext4 kmod-vfat ~~usb2~~ usb3 bash python3(pip) vim-full sha256sum md5sum Customized-BusyBox shadow-full kmod-tcp-bbr
 <br>&ensp;fdisk sfdisk losetup resize2fs coreutils-truncate coreutils-dd kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump chroot debootstrap kmod-usb-storage iperf3
 
@@ -35,7 +35,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2025.03.16 修改系统默认配置，语言、时区、NTP服务器等。定制版BusyBox,删除重复命令，~~新增常用命令~~。
 - 2025.05.25 新增kmod-sched kmod-veth tc-full kmod-netem kmod-sched-ctinfo kmod-ifb kmod-sched-cake kmod-sched-red jq tcpdump。
 - 2025.05.27 集成luci-app-[qosmate](https://github.com/hudra0/qosmate)(测试推荐使用CAKE,关闭防火墙->路由/NAT 卸载，开启网络->接口->全局网络选项->数据包引导启用(所有CPU)，流量导向（RPS）建议128；HFSC模式与passwall2透明代理冲突，同时开启后无法上网)。
-- 2025.06.21 稳定版测试,~~stable版本采用opkg包管理器~~，pre版本采用apk包管理器。
+- 2025.06.21 稳定版测试,~~stable版本采用opkg包管理器~~，stable，pre版本均采用apk包管理器。
 - 2025.06.21 取消上传config备份。
 - 2025.09.06 添加U盘设备支持(kmod-usb-storage)，新增chroot,debootstrap命令快速构建容器，用于运行glibc程序。
 - 2025.10.21 增加natmap包，NAT-1映射公网。
@@ -53,6 +53,7 @@ ext4文件系统，支持自动更新扩容，删除计划任务"#20 5 1 * * /sc
 - 2026.07.12 增加[daede](https://github.com/kenzok8/openwrt-daede)([daed](https://github.com/daeuniverse/daed))包。更新Action编译依赖。
 - 2026.07.13 增加dae包。更新首次启动脚本，添加软链接/usr/share/v2ray/geoXX -> /usr/share/daed/geoXX，启动daed需要读取daed文件夹下资源；若使用dae则不用。经测试，推荐使用dae后端，但需了解[配置文档](https://github.com/daeuniverse/dae/blob/main/example.dae)；daed有可视化面板适合新手或需要数据统计的用，进阶模式也可自定义配置(资源占用相比dae较多)。就个人使用体验，相比passwall2在日常使用下几乎没有区别；dae的流量处理方式虽不同，但支持功能和协议相对较少，如不能开Socks，搭建服务器端等，同时网上教程较少，需要dns分流或建立分流规则需要了解其原理，手搓配置，配置有问题，网络也会受到影响。
 - 2026.09.23 stable版取消编译xray-core，golang冲突。passwall默认使用singbox。
+- 2026.11.14 内核增加NETKIT配置，供dae调用。
 
 ## Credits
 
